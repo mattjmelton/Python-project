@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Jobs Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <style>
+        .table{
+            border: 2px solid gray;
+        }
+        .navbar-text{
+            margin-right: 55%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar justify-content-end">
+            <span class="navbar-text"><h3>Welcome   {{request.session.first_name}} {{request.session.last_name}}</h3></span><a class="nav-item nav-link" href="/logout">Log Out</a> <a class="nav-item nav-link" href="/jobs/new">Add a job</a> 
+        </nav>
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Job</th>
+                            <th>Location</th>
+                            <th>Action</th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for job in all_unjoined_jobs %}
+                        <tr>
+                            <td>{{job.title}}</td>
+                            <td>{{job.location}}</td>
+                            <td>
+                                <a href="/jobs/show/{{job.id}}">View</a>
+                                <a href="/jobs/join/{{job.id}}">| Add</a> 
+                                {% if job.job_created_by_id == request.session.user_id %} 
+                                    <a href="/jobs/edit/{{job.id}}">| Edit</a> <a href="/jobs/destroy/{{job.id}}">| Delete</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>My Jobs</th>
+                            <th>Actions</th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for job in joined_job %}
+                        <tr>
+                            <td>{{job.title}}</td>
+                            <td><a href="/jobs/show/{{job.id}}">View </a><a href="/jobs/destroy/{{job.id}}">| Done</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+           
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+</body>
+</html>

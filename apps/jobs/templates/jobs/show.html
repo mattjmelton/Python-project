@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>View Job</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    
+    <style>
+        .container{
+            padding-top: 40px;
+        }
+        .row {
+            display: block;
+            margin-bottom: 45px;
+        }
+        .navbar-text{
+            margin-right: 60%
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex bd-highlight">
+            <div class="p-2 flex-grow-1 bd-highlight"><h4>{{job.title}}</h4></div>
+            <div class="p-2 bd-highlight"><a class="nav-item nav-link" href="/jobs/dashboard">Back</a> </div>
+            <div class="p-2 bd-highlight"><a class="nav-item nav-link" href="/logout">Log Out</a></div>
+        </div>
+        
+        <div class="row">
+            <p>{{job.description}}</p>
+            <p>Location: {{job.location}}</p>
+            <p>Posted By: {{job.job_created_by.first_name}} {{job.job_created_by.last_name}}</p>
+            <p>Post on: {{job.created_at}}</p>
+        </div>
+        <a href="/jobs/join/{{job.id}}">Add to my Jobs</a>
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+</body>
+</html>
