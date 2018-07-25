@@ -39,10 +39,10 @@ def addjob(request):
         )
             # messages.success(request, "Successfully added a user.")
         
-        this_user = User.objects.get(id=request.session['user_id'])
-        print(this_user)
-        this_user.joined_job.add(job)
-        job.save()
+        # this_user = User.objects.get(id=request.session['user_id'])
+        # print(this_user)
+        # this_user.joined_job.add(job)
+        # job.save()
         return redirect('/jobs/dashboard')
 
 def show(request, job_id):
